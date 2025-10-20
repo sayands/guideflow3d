@@ -1,0 +1,165 @@
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>NeurIPS '25 - GuideFlow3D</title>
+        <link rel="icon" type="image/png" href="assets/images/logo.png">
+        <link rel="stylesheet" href="fonts/avenir-next/stylesheet.css">
+        <link rel="stylesheet" href="fonts/segoe-print/stylesheet.css">
+        <link rel="stylesheet" href="icons/style.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+        <link rel="stylesheet" href="css/window.css">
+        <link rel="stylesheet" href="css/carousel.css">
+        <link rel="stylesheet" href="css/selection_panel.css">
+        <link rel="stylesheet" href="css/main.css">
+        <script src="js/window.js"></script>
+        <script src="js/carousel.js"></script>
+        <script src="js/selection_panel.js"></script>
+        <script src="js/transfer.js"></script>
+		<script src="js/main.js"></script>
+        <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+    </head>
+    <body>
+        <div id="main">
+            <div id="title" class="x-gradient-font">
+                <span style="font-size: 80px;"><img src="assets/images/logo.png" alt="GuideFlow3D Logo" style="height: 80px; vertical-align: top; margin-right: 8px;">uideFlow3D</span><br>
+                <span style="font-size: 43px;">Optimization-Guided Rectified Flow For Appearance Transfer</span>
+            </div>
+            <div id="authors">
+                <div><a class="link" href="https://sayands.github.io" target="_blank">Sayan Deb Sarkar</a><sup> 1 </sup></div>
+                <div><a class="link" href="https://vevenom.github.io/" target="_blank">Sinisa Stekovic</a><sup> 2 </sup></div>
+                <div><a class="link" href="https://vincentlepetit.github.io/" target="_blank">Vincent Lepetit</a><sup> 2 </sup></div>
+                <div><a class="link" href="https://ir0.github.io/" target="_blank">Iro Armeni</a><sup> 1 </sup></div>
+            </div>
+            <div id="institution">
+                <div><sup> 1 </sup><a class="link" href="https://www.stanford.edu/" target="_blank">Stanford University</a></div>
+                <div><sup> 2 </sup><a class="link" href="https://imagine-lab.enpc.fr/" target="_blank">ENPC, IP Paris</a></div>
+            </div>
+            <div class="x-center-text" style="font-size: 20px; font-weight: 700; color: #5f5f5f;">
+                NeurIPS 2025 
+            </div>
+            <div id="links">
+                <div><a id="paper" style="pointer-events: none; opacity: 0.5; cursor: not-allowed;" href="">Paper</a></div>
+                <div><a id="arxiv" style="pointer-events: none; opacity: 0.5; cursor: not-allowed;"><i class="ai ai-arxiv"></i> arXiv</a></div>
+                <div><a id="code" href="https://github.com/GradientSpaces/GuideFlow3D" target="_blank">Code</a></div>
+                <div><a id="poster" style="pointer-events: none; opacity: 0.5; cursor: not-allowed;">Poster</a></div>
+            </div>
+            <div id="teaser">
+                <div style="width: 100%;"><video autoplay playsinline loop muted src="assets/videos/teaser.mp4" poster="assets/images/teaser_poster.png"></video></div>
+            </div>
+            <div class="x-center-text" style="font-size: 20px; font-weight: 500; color: #3f3f3f;">
+                <b>TL;DR:</b> <i>A training-free method that steers pre-trained generative rectified flow with differentiable guidance for robust, geometry-aware 3D appearance transfer across shapes and modalities.</i>
+            </div>
+            <div id="abstract" class="x-gradient-block">
+                Transferring appearance to 3D assets using different representations of the appearance object - such 
+                as images or text - has garnered interest due to its wide range of applications in industries like 
+                gaming, augmented reality, and digital content creation. However, state-of-the-art methods still fail 
+                when the geometry between the input and appearance objects is significantly different. A 
+                straightforward approach is to directly apply a 3D generative model, but we show that this ultimately 
+                fails to produce appealing results. Instead, we propose a principled approach inspired by universal 
+                guidance. Given a pretrained rectified flow model conditioned on image or text, our 
+                training-free method interacts with the sampling process by periodically adding guidance. This 
+                guidance can be modeled as a differentiable loss function, and we experiment with two different types 
+                of guidance including part-aware losses for appearance and self-similarity. Our experiments show that 
+                our approach successfully transfers texture and geometric details to the input 3D asset, outperforming
+                baselines both qualitatively and quantitatively. We also show that traditional metrics are not 
+                suitable for evaluating the task due to their inability of focusing on local details and comparing 
+                dissimilar inputs, in absence of ground truth data. We thus evaluate appearance transfer 
+                quality with a GPT-based system objectively ranking outputs, ensuring robust and human-like assessment, 
+                as further confirmed by our user study. Beyond showcased scenarios, our method is general and could be 
+                extended to different types of diffusion models and guidance functions.
+            </div>
+
+            <div class="x-section-title"><div class="x-gradient-font">Appearance Based Transfer <span style="font-size: 40px; font-weight:600;"></span></div></div>
+            <p>Transfers fine-grained texture and material details through part-aware correspondence between shapes.</p>
+            <div id="results-img2"></div>
+
+            <div class="x-section-title"><div class="x-gradient-font">Self-Similarity Based Transfer <span style="font-size: 40px; font-weight:600;"></span></div></div>
+            <p>Captures coherent structure and detail by guiding transfer through internal self-similarity cues.</p>
+            <div id="results-txt2"></div>
+            
+            <div class="x-section-title"><div class="x-gradient-font">Application <span style="font-size: 40px; font-weight:600;">|</span> 3D Scene Editing</div></div>
+            <p>
+                Seamlessly stylize objects while preserving their geometry and spatial layout for interactive 3D context-aware scene restyling.
+            </p>
+            
+            <div id="teaser">
+                <div style="width: 100%;"><video autoplay playsinline muted src="assets/videos/scene_editing.mp4" poster="assets/images/scene_editing_poster.png"></video></div>
+            </div>
+
+            <div class="x-section-title"><div class="x-gradient-font">Methodology</div></div>
+            <p>
+                <img class="pipeline-img" src="assets/images/pipeline.png" alt="Overview of the method" style="width: 100%;">
+            </p>
+            
+            <p>
+                We introduce <span style="font-size: 16px; font-weight: 600;">GuideFlow3D</span>, a training-free framework for 3D appearance transfer that enables fine-grained control over both geometry and texture, even across objects with large shape differences. 
+                Unlike prior 3D style transfer methods that require retraining or rely on multi-view diffusion, our approach directly steers a pretrained 3D generative model during inference through <em>guided rectified flow sampling</em>.
+                This mechanism interleaves latent flow updates with differentiable optimization, allowing the model to adaptively incorporate new guidance objective without modifying its learned parameters.
+            </p>
+            <p>
+                During the denoising process, we apply two complementary guidance strategies:
+                (i) a <em>part-aware appearance loss</em> that co-segments the input and appearance objects to align textures and geometry across corresponding parts, and 
+                (ii) a <em>self-similarity loss</em> that enforces internal consistency in local regions when appearance cues are derived from text or images. This unified design allows our framework to seamlessly transfer material and structural details from diverse modalities such as 3D meshes, images, or natural language, onto new geometries.
+                As a result, it bridges the gap between geometric and perceptual style transfer in 3D, producing coherent, detailed assets robust to large geometric variations.
+                Its training-free formulation and structured latent design make it efficient, versatile, and easily extendable to new forms of guidance for controllable 3D generation.
+            </p>
+
+            <div class="x-section-title"><div class="x-gradient-font">Concurrent Works</div></div>
+            <p>
+                Several concurrent works explore related directions in 3D appearance transfer and generation. Check them out!
+            </p>
+            <ul style="margin: 16px 32px; color: #2C3E50; font-size: 16px; font-weight: 500; line-height: 1.8;">
+                <li><a class="link" href="https://arxiv.org/abs/2503.16630" target="_blank"><strong>TriTex</strong></a> learns a volumetric texture field from a single textured mesh by mapping semantic features to surface colors.</li>
+                <li><a class="link" href="https://arxiv.org/abs/2401.09416" target="_blank"><strong>TextureDreamer</strong></a> transfers relightable textures from a small number of input images using an image-guided texture synthesis method.</li>
+            </ul>
+
+
+
+            <div class="x-section-title"><div class="x-gradient-font">Citation</div></div>
+            <p>
+                If you find our work useful, please consider citing:
+            </p>
+            <p class="bibtex x-gradient-block">
+      @inproceedings{sayandsarkar_2025_guideflow3d,
+      author = {Deb Sarkar, Sayan and Stekovic, Sinisa and Lepetit, Vincent and Armeni, Iro},
+      title = {GuideFlow3D: Optimization-Guided Rectified Flow For 3D Appearance Transfer},
+      booktitle = {Advances in Neural Information Processing Systems (NeurIPS)},
+      year = {2025},
+}
+            </p>
+            <div style="height: 20px;"> </div>
+            <p class="x-note">
+                <b style="line-height: 32px;">Ethical Considerations</b><br>
+                <i>
+                    Next to the exciting possibilities, there are considerable risks that should be addressed including 
+                    manipulation and Deepfakes for spreading misinformation, concerns regarding 
+                    intellectual property, and bias amplifications. Ethical usage of our method includes 
+                    aspects of disclosing when 3D content is generated using AI, respecting and attributing 
+                    source content licenses, and building systems for understanding biases are some of the ways 
+                    for tackling these issues.  
+                </i>
+            </p>
+            <p class="x-note">
+                <b style="line-height: 32px;">Acknowledgements</b><br>
+                <i>
+                    We thank Nicolas Dufour and Arijit Ghosh from Imagine Labs for helpful discussions on universal guidance, and Liyuan Zhu and Jianhao Zheng from
+                    Gradient Spaces Research Group for help with conducting the user study. 
+                    Website template inspired by <a href="https://microsoft.github.io/TRELLIS/" style="color: #6B8598;" target="_blank">TRELLIS</a>.
+                </i>
+            </p>
+        </div>
+        <div id="bottombar">
+            <div class="row">
+                <div><img src="assets/images/logo.png" alt="GuideFlow3D Logo" style="height: 20px; vertical-align: bottom; margin-right: 4px;"><span style="font-size: 10px; font-weight: 600">uideFlow3D</span>: Optimization-Guided Rectified Flow For 3D Appearance Transfer</div>
+                <div style="display: flex; flex-direction: row; gap: 8px;">
+                    <a href="mailto:sdsarkar@stanford.edu">Contact</a>
+                    <span style="width: 1px; background-color: rgba(255, 255, 255, 0.7);"></span>
+                    <a href="https://www.apache.org/licenses/LICENSE-2.0" target="_blank">Apache License 2.0</a>
+                    <span style="width: 1px; background-color: rgba(255, 255, 255, 0.7);"></span>
+                    <span>© 2025</span>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
