@@ -34,7 +34,16 @@ function openWindow(content) {
         fullscreenElement.style.opacity = 1;
     }, 100);
     
-    // if copntent height is greater than window height, enable scroll
+    // Allow touch interactions for model-viewer on mobile
+    setTimeout(() => {
+        let modelViewer = document.getElementById('modelviewer');
+        if (modelViewer) {
+            modelViewer.addEventListener('touchstart', stopPropagation);
+            modelViewer.addEventListener('touchmove', stopPropagation);
+        }
+    }, 200);
+    
+    // if content height is greater than window height, enable scroll
     let contentHeight = contentElement.clientHeight;
     let innerHeight = contentElement.children[0].clientHeight;
     if (innerHeight > contentHeight) {
@@ -260,10 +269,13 @@ function modelviewer_window_template(item, panel, config) {
                         id="modelviewer"
                         src="${item.model}"
                         camera-controls
+                        touch-action="pan-y"
                         tone-mapping="natural"
                         shadow-intensity="1"
                         environment-image="assets/env_maps/white.jpg"
                         exposure="${item.exposure || 5}"
+                        ar
+                        ar-modes="webxr scene-viewer quick-look"
                         >`
     if (show_annotations) {
         window_state.assets = item.assets;

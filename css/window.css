@@ -69,6 +69,9 @@
 .modelviewer-container model-viewer {
     width: 100%;
     height: 100%;
+    touch-action: pan-y;
+    -webkit-user-select: none;
+    user-select: none;
 }
 
 .modelviewer-container model-viewer button {
