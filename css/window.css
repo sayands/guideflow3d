@@ -178,3 +178,75 @@
     transform: none;
     box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
 }
+
+/* Mobile Responsive Styles for Window/Modal */
+@media screen and (max-width: 768px) {
+    #fullscreen #window {
+        max-width: 95vw;
+        max-height: 95vh;
+    }
+
+    #fullscreen #window #close {
+        width: 28px;
+        height: 28px;
+        font-size: 14px;
+    }
+
+    .modelviewer-container {
+        width: calc(100% - 16px) !important;
+        margin: 4px;
+    }
+
+    .modelviewer-panel {
+        width: calc(100% - 16px) !important;
+        min-width: unset;
+        margin: 4px;
+    }
+
+    .modelviewer-panel-prompt {
+        height: 120px;
+        font-size: 12px;
+    }
+
+    .modelviewer-panel-button {
+        height: 36px;
+        padding: 0px 12px;
+        font-size: 14px;
+        margin: 3px;
+    }
+
+    .modelviewer-panel-button.small {
+        height: 28px;
+        padding: 0px 10px;
+        font-size: 12px;
+    }
+
+    .modelviewer-panel-button.tiny {
+        height: 22px;
+        padding: 0px 8px;
+        font-size: 11px;
+    }
+
+    .x-section-title.small {
+        font-size: 16px !important;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .modelviewer-panel-prompt {
+        height: 100px;
+        font-size: 11px;
+    }
+
+    .modelviewer-panel-button {
+        height: 32px;
+        padding: 0px 10px;
+        font-size: 13px;
+    }
+
+    .modelviewer-panel-button.small {
+        height: 26px;
+        padding: 0px 8px;
+        font-size: 11px;
+    }
+}
